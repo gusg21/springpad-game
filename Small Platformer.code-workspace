@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "code"
+		}
+	],
+	"settings": {
+		"lua.targetVersion": "5.1"
+	}
+}
