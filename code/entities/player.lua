@@ -120,6 +120,7 @@ function Player:doPhysics()
                     end
                     if col.other.properties.bouncy == true then
                         self.velocity.y = -self.velocity.y
+                        Sounds["Springpad"]:play()
                         break
                     end
                 -- other special properties
@@ -170,6 +171,7 @@ function Player:die()
     self.onGround = false
     StatusText("DIED")
     World:makeMap()
+    Sounds["Death"]:play()
 end
 
 function Player:inPassthroughBlock()
@@ -191,6 +193,8 @@ function Player:togglePassthrough()
     if not self.canPassthrough and self:inPassthroughBlock() then
         self:die()
     end
+
+    Sounds["Passthrough " .. tostring(math.random(1, 3))]:play()
 end
 
 function Player:doStatusText()

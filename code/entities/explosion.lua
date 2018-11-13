@@ -7,6 +7,8 @@ function Explosion:initialize(x, y)
 
     self.image = MapControl.Tileset("assets/explosion.png", 8)
     self.imageIndex = 0
+
+    Sounds["Explosion " .. tostring(math.random(1, 3))]:play()
 end
 
 function Explosion:update()

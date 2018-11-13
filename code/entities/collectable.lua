@@ -22,9 +22,21 @@ function Collectable:initialize(data, targetAbility)
 end
 
 function Collectable:checkForPlayer()
-    if rectanglesOverlap(self.pos.x + 1, self.pos.y + 1, 6, 6, _player.pos.x, _player.pos.y, _player.width, _player.height) then
+    if
+        rectanglesOverlap(
+            self.pos.x + 1,
+            self.pos.y + 1,
+            6,
+            6,
+            _player.pos.x,
+            _player.pos.y,
+            _player.width,
+            _player.height
+        )
+     then
         _player[self.targetAbility] = true
         if self.onGot then
+            Sounds["Powerup"]:play()
             self:onGot()
         end
 

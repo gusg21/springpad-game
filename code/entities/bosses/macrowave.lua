@@ -11,11 +11,14 @@ function Macrowave:initialize(data)
         self.invisibleWall = {}
         _bumpWorld:add(self.invisibleWall, -2, 0, 1, 80)
 
-        self.macrowall = EntityIndex["Macro Wall"]({
-            x = 9 * 8,
-            y = 0,
-            targetBossId = 1,
-        })
+        self.macrowall =
+            EntityIndex["Macro Wall"](
+            {
+                x = 9 * 8,
+                y = 0,
+                targetBossId = 1
+            }
+        )
 
         self.direction = 1
 
@@ -53,6 +56,7 @@ function Macrowave:update()
         self.attackTimer = 65
 
         EntityIndex["Macro Attack"](self)
+        Sounds["Cube Drop " .. tostring(math.random(1, 2))]:play()
     end
     self.dropTimer = self.dropTimer - 1
 
@@ -78,7 +82,11 @@ function Macrowave:draw()
     if self.dropTimer > 0 then
         self.image:drawTile(6, math.floor(self.pos.x - self.offset.x), math.floor(self.pos.y - self.offset.y))
     else
-        self.image:drawTile(math.floor(self.imageIndex), math.floor(self.pos.x - self.offset.x), math.floor(self.pos.y - self.offset.y))
+        self.image:drawTile(
+            math.floor(self.imageIndex),
+            math.floor(self.pos.x - self.offset.x),
+            math.floor(self.pos.y - self.offset.y)
+        )
     end
 
     self.healthBar:draw(2, 77)
