@@ -229,14 +229,14 @@ function Player:doGameplay()
 
     -- NOTE: Boosting is in the physics. Can't be here b/c of update order :P
 
+    -- Office
+    if World.roomx == 1 and World.roomy == -2 then
+        _respawn.roomPos = Vector(1, -2)
+        _respawn.pos = Vector(36, 10)
+    end
+
     -- Checkpointing
     if self.roomChange then
-        -- Office
-        if World.roomx == 1 and World.roomy == -2 then
-            _respawn.roomPos = Vector(1, -2)
-            _respawn.pos = Vector(36, 10)
-        end
-
         -- Post Macro
         if World.roomx == 4 and World.roomy == -1 then
             _respawn.roomPos = Vector(3, -1)

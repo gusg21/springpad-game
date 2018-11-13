@@ -13,4 +13,8 @@ local Sounds = {
     ["Springpad"] = love.audio.newSource("assets/sounds/springpad.wav", "static")
 }
 
+for name, sound in pairs(Sounds) do
+    sound:setVolume(0.1)
+end
+
 return Sounds
