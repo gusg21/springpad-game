@@ -55,33 +55,38 @@ Game.init = function()
 
     ScreenShake:shake(1, 9)
 
-    -- local music1 = love.audio.newSource("assets/music/1.mp3", "stream")
-    -- local music2 = love.audio.newSource("assets/music/2.mp3", "stream")
-    -- local music3 = love.audio.newSource("assets/music/3.mp3", "stream")
-    -- local music4 = love.audio.newSource("assets/music/4.mp3", "stream")
-    -- local music5 = love.audio.newSource("assets/music/5.mp3", "stream")
+    local music1 = love.audio.newSource("assets/music/1.mp3", "stream")
+    local music2 = love.audio.newSource("assets/music/2.mp3", "stream")
+    local music3 = love.audio.newSource("assets/music/3.mp3", "stream")
+    local music4 = love.audio.newSource("assets/music/4.mp3", "stream")
+    local music5 = love.audio.newSource("assets/music/5.mp3", "stream")
+    local music6 = love.audio.newSource("assets/music/6.mp3", "stream")
+    local music7 = love.audio.newSource("assets/music/7.mp3", "stream")
 
-    -- MusicSystem:load(
-    --     {
-    --         [0] = {
-    --             -- musics 1 + 2
-    --             music1,
-    --             music2
-    --         },
-    --         [1] = {
-    --             music2,
-    --             music3
-    --         },
-    --         [2] = {
-    --             music3,
-    --             music4
-    --         },
-    --         [3] = {
-    --             music4,
-    --             music5
-    --         }
-    --     }
-    -- )
+    MusicSystem:load(
+        {
+            [0] = {
+                -- musics 1 + 2
+                music1,
+                music7
+            },
+            [1] = {
+                music2,
+                music3,
+                music7
+            },
+            [2] = {
+                music3,
+                music4,
+                music2
+            },
+            [3] = {
+                music4,
+                music5,
+                music8
+            }
+        }
+    )
 
     -- D.cool()
 end
@@ -105,7 +110,17 @@ Game.update = function(dt)
         end
     )
 
-    -- MusicSystem:update()
+    MusicSystem:update()
+    -- some etc. music handling
+    if World.roomy >= 0 then
+        MusicSystem:setArea(0)
+    elseif World.roomy == -1 then
+        MusicSystem:setArea(1)
+    elseif World.roomy <= -2 and World.roomy >= -3 then
+        MusicSystem:setArea(2)
+    elseif World.roomy <= -4 then
+        MusicSystem:setArea(3)
+    end
     RewardCounter:update()
     StatusText:update()
     ScreenShake:update()
