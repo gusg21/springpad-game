@@ -14,7 +14,7 @@ local Sounds = {
 }
 
 for name, sound in pairs(Sounds) do
-    sound:setVolume(0.1)
+    sound:setVolume(0.17)
 end
 
 return Sounds

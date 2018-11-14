@@ -61,6 +61,9 @@ Credits.draw = function()
     love.graphics.scale(5, 5)
 
     love.graphics.draw(creditsImage, 0, scrollY)
+    if Timer.elapsed > 0 then
+        Timer:draw()
+    end
 
     love.graphics.pop()
 end

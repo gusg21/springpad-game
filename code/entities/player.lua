@@ -14,8 +14,8 @@ function Player:initialize(startX, startY)
 
     self.image = MapControl.Tileset("assets/player.png", 8)
     self.direction = 1
-    self.imageIndex = 0
-    self.animation = "idle"
+    self.imageIndex = 4
+    self.animation = "falling"
     self.animationTimer = 0
 
     self.canPassthrough = false

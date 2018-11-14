@@ -21,6 +21,7 @@ end
 
 function SecretCutscene:update()
     self.elapsed = self.elapsed + 1
+    MusicSystem:pause()
 
     if self.elapsed == 60 then
         self.daveyText:show(
@@ -36,6 +37,8 @@ function SecretCutscene:update()
 
     if self.daveyText.done and self.elapsed > 80 then
         _player:canMove(true)
+        MusicSystem:play()
+        Entities:removeEntity(self.id)
     end
 
     self.daveyText:update()

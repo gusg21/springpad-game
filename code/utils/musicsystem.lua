@@ -18,7 +18,7 @@ end
 
 function MusicSystem:nextTrack()
     local availableTracks = self.data[self.currentArea]
-    self.currentTrack = availableTracks[math.random(#availableTracks)]
+    self.currentTrack = availableTracks[love.math.random(#availableTracks)]
     self.currentTrack:play()
 end
 

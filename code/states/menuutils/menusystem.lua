@@ -1,36 +1,36 @@
-local empty = function (...) end
+local empty = function(...)
+end
 
 local MenuSystem = {
-        structure = {
-            main = {
-                "PLAY",
-                "CREDITS",
-                "HOW TO PLAY",
-                "QUIT"
-            },
-            howToPlay = {
-                "BACK"
-            }
+    structure = {
+        main = {
+            "PLAY",
+            "CREDITS",
+            "HOW TO PLAY",
+            "QUIT"
         },
-        actions = {
-            main = {
-                ["PLAY"] = function ()
-                    Gamestate.switch(Game)
-                end,
-                ["CREDITS"] = function ()
-                    Gamestate.switch(Credits)
-                end,
-                ["HOW TO PLAY"] = "howToPlay",
-                ["QUIT"] = function ()
-                    love.event.quit()
-                end
-            },
-            howToPlay = {
-                ["BACK"] = "main"
-            },
+        howToPlay = {
+            "BACK"
+        }
+    },
+    actions = {
+        main = {
+            ["PLAY"] = function()
+                isFading = true
+            end,
+            ["CREDITS"] = function()
+                Gamestate.switch(Credits)
+            end,
+            ["HOW TO PLAY"] = "howToPlay",
+            ["QUIT"] = function()
+                love.event.quit()
+            end
         },
-
-        currentMenu = "main",
+        howToPlay = {
+            ["BACK"] = "main"
+        }
+    },
+    currentMenu = "main"
 }
 
 function MenuSystem:getCurrentMenu()

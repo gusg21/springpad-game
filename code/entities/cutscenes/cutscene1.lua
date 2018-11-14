@@ -9,12 +9,15 @@ function Cutscene1:initialize(data)
     self.daveyText = DialogText(self.daveyPos.x - 39, self.daveyPos.y - 20, 80)
 
     self.phase = 0
+    self.music = _daveyMusic
 
     _player:canMove(false)
 end
 
 function Cutscene1:update()
     if self.phase == 0 then -- player walking
+        MusicSystem:pause()
+
         if _player.pos.x < 20 then
             print("Moving player right")
             _player.velocity.x = _player.movespeed
@@ -27,6 +30,7 @@ function Cutscene1:update()
             self.phase = 1
         end
     elseif self.phase == 1 then
+        self.music:play()
         self.daveyText:show(
             {
                 "HI! I'M DAVEY!",
@@ -41,6 +45,9 @@ function Cutscene1:update()
     elseif self.phase == 2 then
         if self.daveyText.done == true then
             _player:canMove(true)
+            self.phase = 3
+            self.music:stop()
+            MusicSystem:play()
         end
     end
 

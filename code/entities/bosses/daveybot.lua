@@ -22,10 +22,12 @@ function DaveyBot:initialize(data)
 
     self.leftWall = {wall = "left"}
     self.rightWall = {wall = "right"}
-    _bumpWorld:add(self.leftWall, -2, 0, 1, 700 / _zoom)
-    _bumpWorld:add(self.rightWall, 81, 0, 1, 700 / _zoom)
+    _bumpWorld:add(self.leftWall, -101, 0, 100, 700 / _zoom)
+    _bumpWorld:add(self.rightWall, 81, 0, 100, 700 / _zoom)
 
     self.dialog = DialogText(self.pos.x, self.pos.y + 130, 47)
+    MusicSystem:pause()
+    _finalBossMusic:play()
 end
 
 function DaveyBot:circleShoot()
@@ -79,7 +81,7 @@ function DaveyBot:update()
         _player:canMove(true)
     elseif self.stage == 1 then
         print("stage 1")
-        self.pos.y = self.pos.y + 0.1
+        self.pos.y = self.pos.y + 0.06
 
         if self.pos.y > 4 then
             self.stage = 2
@@ -182,6 +184,8 @@ function DaveyBot:onRemove()
     _bumpWorld:remove(self.leftWall)
     _bumpWorld:remove(self.rightWall)
     World:makeMap()
+    _finalBossMusic:stop()
+    MusicSystem:play()
 end
 
 function DaveyBot:draw()

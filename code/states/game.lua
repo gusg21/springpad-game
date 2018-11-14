@@ -63,6 +63,8 @@ Game.init = function()
     local music5 = love.audio.newSource("assets/music/5.mp3", "stream")
     local music6 = love.audio.newSource("assets/music/6.mp3", "stream")
     local music7 = love.audio.newSource("assets/music/7.mp3", "stream")
+    _daveyMusic = love.audio.newSource("assets/music/Davey.mp3", "stream")
+    _finalBossMusic = love.audio.newSource("assets/music/Macro.mp3", "stream")
 
     MusicSystem:load(
         {
@@ -89,6 +91,8 @@ Game.init = function()
         }
     )
 
+    _fadeInAlpha = 1
+
     -- D.cool()
 end
 
@@ -101,7 +105,9 @@ Game.update = function(dt)
     --     love.window.setFullscreen(not love.window.getFullscreen(), "desktop")
     -- end
 
-    _player:update()
+    if _fadeInAlpha <= 0 then
+        _player:update()
+    end
 
     Entities:forEach(
         function(e)
@@ -125,7 +131,11 @@ Game.update = function(dt)
     RewardCounter:update()
     StatusText:update()
     ScreenShake:update()
-    Timer:update()
+    if _fadeInAlpha <= 0 then
+        Timer:update()
+    end
+
+    _fadeInAlpha = _fadeInAlpha - 0.01
 
     love.keyboard.updateKeys()
     lb.update(dt)
@@ -133,6 +143,7 @@ end
 
 Game.draw = function()
     love.graphics.clear()
+    love.graphics.setColor(1, 1, 1)
     -- Game
 
     love.graphics.push()
@@ -193,6 +204,9 @@ Game.draw = function()
             end
         end
     )
+
+    love.graphics.setColor(0, 0, 0, _fadeInAlpha)
+    love.graphics.rectangle("fill", 0, 0, 400, 400)
 end
 
 return Game

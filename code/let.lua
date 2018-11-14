@@ -32,7 +32,7 @@ return {
         {"Reward", x = 3 * gridSize, y = 5 * gridSize}
     },
     ["1.-5"] = {
-        {"Davey Cutscene 2"}
+        -- {"Davey Cutscene 2"}
     },
     ["2.0"] = {
         {"Block", x = 8 * gridSize, y = 1 * gridSize},
